@@ -17,9 +17,12 @@ export const LIGHT_COLORS = {
   "--username": "var(--blue-500)",
   "--logo": "var(--neutral-900)",
   "--theme-toggle": "var(--neutral-500)",
+  "--theme-toggle-hover": "var(--neutral-900)",
   "--button-background": "var(--blue-500)",
   "--button-foreground": "var(--neutral-0)",
+  "--button-hover": "var(--blue-300)",
   "--search-icon": "var(--blue-500)",
+  "--focus": "var(--blue-500)",
 };
 
 export const DARK_COLORS = {
@@ -35,7 +38,10 @@ export const DARK_COLORS = {
   "--stats-icon": "var(--neutral-0)",
   "--username": "var(--blue-300)",
   "--theme-toggle": "var(--neutral-200)",
+  "--theme-toggle-hover": "var(--neutral-0)",
   "--button-background": "var(--blue-500)",
   "--button-foreground": "var(--neutral-0)",
+  "--button-hover": "var(--blue-300)",
   "--search-icon": "var(--blue-300)",
+  "--focus": "var(--blue-500)",
 };

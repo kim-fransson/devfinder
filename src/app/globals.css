@@ -32,9 +32,12 @@
   --color-stats-background: var(--stats-background);
   --color-stats-icon: var(--stats-icon);
   --color-theme-toggle: var(--theme-toggle);
+  --color-theme-toggle-hover: var(--theme-toggle-hover);
   --color-button-background: var(--button-background);
   --color-button-foreground: var(--button-foreground);
   --color-search-icon: var(--search-icon);
+  --color-button-hover: var(--button-hover);
+  --color-focus: var(--focus);
   --font-mono: var(--font-space-mono);
   --shadow-card: var(--card-shadow);
 }

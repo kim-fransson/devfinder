@@ -36,7 +36,10 @@ async function GithubUser({ username }) {
   } = user;
 
   return (
-    <article className='py-8 px-6 rounded-2xl bg-card shadow-card grid grid-cols-[auto_1fr] gap-y-6 gap-x-5 md:py-12 md:px-8 md:gap-x-8 md:gap-y-0'>
+    <article
+      className={`py-8 px-6 rounded-2xl bg-card shadow-card grid grid-cols-[auto_1fr] md:grid-rows-[min-content_1fr] 
+        gap-y-6 gap-x-5 md:py-12 md:px-8 md:gap-x-8`}
+    >
       <div className='relative size-[70px] col-span-1 md:size-[117px] md:row-span-full'>
         <Image
           className='rounded-full  bg-image-background'
@@ -51,7 +54,8 @@ async function GithubUser({ username }) {
           <a
             href={html_url}
             target='_blank'
-            className='text-username block mt-0.5 mb-1'
+            className={`text-username block mt-0.5 mb-1 rounded-sm outline-0 focus-visible:ring-2 
+              focus-visible:ring-focus`}
           >
             {`@${login}`}
           </a>
@@ -61,7 +65,7 @@ async function GithubUser({ username }) {
         </time>
       </header>
 
-      <div className='col-span-full grid gap-6 md:col-start-2 md:-mt-9'>
+      <div className='col-span-full grid gap-6 md:col-start-2 '>
         {bio || <p className='opacity-75'>This profile has no bio</p>}
 
         <ul className='grid gap-4 px-5 py-4 rounded-xl bg-stats-background md:px-8 md:grid-cols-3'>
@@ -111,7 +115,11 @@ function Link({ href, children, icon: Icon }) {
   const isNotAvailable = !children;
 
   const Template = !isNotAvailable ? (
-    <a href={href} target='_blank'>
+    <a
+      href={href}
+      target='_blank'
+      className='outline-0 focus-visible:ring-2 focus-visible:ring-focus rounded-sm'
+    >
       {children}
     </a>
   ) : (

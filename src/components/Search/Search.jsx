@@ -5,9 +5,12 @@ import { searchUser } from "./actions";
 import SearchIcon from "../SearchIcon";
 
 export default function SearchForm() {
-  const [state, formAction] = React.useActionState(searchUser, {
-    error: "",
-  });
+  const [state, formAction, isPending] = React.useActionState(
+    searchUser,
+    {
+      error: "",
+    }
+  );
   const [error, setError] = React.useState("");
 
   // Sync server error state when it changes
@@ -37,6 +40,7 @@ export default function SearchForm() {
         className='text-sm flex-1 placeholder:text-foreground overflow-ellipsis md:text-lg outline-none'
       />
       {error && <span className='text-error font-bold'>{error}</span>}
+      {isPending && <span className='font-bold'>Loading...</span>}
       <button
         type='submit'
         className='cursor-pointer py-3 px-5 rounded-xl font-bold bg-button-background text-button-foreground 

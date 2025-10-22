@@ -31,13 +31,17 @@ export default async function RootLayout({ children }) {
   return (
     <html lang='en' data-color-theme={theme} style={themeColors}>
       <body
-        className={`${spaceMono.variable} antialiased p-2 font-mono grid gap-8`}
+        className={`${spaceMono.variable} antialiased px-4 py-8 md:px-8 md:py-10 font-mono`}
       >
-        <header className='flex justify-between'>
-          <h1 className='font-bold text-2xl text-logo'>devfinder</h1>
-          <DarkLightToggle initialTheme={theme} />
-        </header>
-        {children}
+        <div className='grid gap-8 mx-auto max-w-180'>
+          <header className='flex justify-between'>
+            <h1 className='font-bold text-2xl text-logo'>
+              devfinder
+            </h1>
+            <DarkLightToggle initialTheme={theme} />
+          </header>
+          {children}
+        </div>
       </body>
     </html>
   );

@@ -2,27 +2,27 @@
 
 import React from "react";
 import { searchUser } from "./actions";
+import SearchIcon from "../SearchIcon";
 
 export default function SearchForm() {
   return (
     <form
       action={searchUser}
-      style={{ display: "flex", gap: 8, alignItems: "center" }}
+      className='rounded-2xl bg-card flex items-center gap-2 md:gap-5 shadow-card py-2.5 pr-3 pl-3 md:pl-6'
     >
+      <div className='text-search-icon size-5 scale-80 md:scale-100'>
+        <SearchIcon />
+      </div>
       <input
         name='username'
-        placeholder='GitHub username'
-        aria-label='GitHub username'
+        placeholder='Search GitHub username…'
+        aria-label='Search GitHub username…'
         required
-        style={{
-          padding: "8px 10px",
-          borderRadius: 6,
-          border: "1px solid #ccc",
-        }}
+        className='text-sm flex-1 placeholder:text-foreground overflow-ellipsis md:text-lg'
       />
       <button
         type='submit'
-        style={{ padding: "8px 12px", borderRadius: 6 }}
+        className='py-3 px-5 rounded-xl font-bold bg-button-background text-button-foreground'
       >
         Search
       </button>

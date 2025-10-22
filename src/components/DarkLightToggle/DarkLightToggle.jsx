@@ -35,7 +35,7 @@ function DarkLightToggle({ initialTheme }) {
 
   return (
     <button
-      className='flex items-center gap-3 text-theme-toggle font-bold tracking-[0.15em]'
+      className='flex items-center gap-3 text-theme-toggle text-sm font-bold tracking-[0.15em]'
       onClick={handleClick}
     >
       {theme === "light" ? "DARK" : "LIGHT"}

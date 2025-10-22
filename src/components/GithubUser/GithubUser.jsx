@@ -36,8 +36,8 @@ async function GithubUser({ username }) {
   } = user;
 
   return (
-    <article className='py-8 px-6 rounded-2xl bg-card shadow-card grid grid-cols-[auto_1fr] gap-y-6 gap-x-5'>
-      <div className='relative size-[70px] col-span-1'>
+    <article className='py-8 px-6 rounded-2xl bg-card shadow-card grid grid-cols-[auto_1fr] gap-y-6 gap-x-5 md:py-12 md:px-8 md:gap-x-8 md:gap-y-0'>
+      <div className='relative size-[70px] col-span-1 md:size-[117px] md:row-span-full'>
         <Image
           className='rounded-full  bg-image-background'
           src={avatar_url}
@@ -45,7 +45,7 @@ async function GithubUser({ username }) {
           alt=''
         />
       </div>
-      <header>
+      <header className='md:flex md:content-baseline'>
         <hgroup>
           <h2 className='text-2xl font-bold text-heading'>{name}</h2>
           <a
@@ -56,21 +56,21 @@ async function GithubUser({ username }) {
             {`@${login}`}
           </a>
         </hgroup>
-        <time dateTime={created_at}>
+        <time className='md:ml-auto' dateTime={created_at}>
           {formatCreatedAt(created_at)}
         </time>
       </header>
 
-      <div className='col-span-full grid gap-6'>
+      <div className='col-span-full grid gap-6 md:col-start-2 md:-mt-9'>
         {bio || <p className='opacity-75'>This profile has no bio</p>}
 
-        <ul className='grid gap-4 px-5 py-4 rounded-xl bg-stats-background'>
+        <ul className='grid gap-4 px-5 py-4 rounded-xl bg-stats-background md:px-8 md:grid-cols-3'>
           <Stat label='Repos' value={public_repos} />
           <Stat label='Followers' value={followers} />
           <Stat label='Following' value={following} />
         </ul>
 
-        <ul className='grid gap-4'>
+        <ul className='grid gap-4 md:grid-cols-2'>
           <Link
             icon={LocationIcon}
             href={createGoogleMapsLink(location)}

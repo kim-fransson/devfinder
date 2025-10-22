@@ -10,22 +10,31 @@ import CompanyIcon from "../CompanyIcon";
 import LocationIcon from "../LocationIcon";
 import TwitterIcon from "../TwitterIcon";
 import WebsiteIcon from "../WebsiteIcon";
+import { getGithubUser } from "@/helpers";
 
-function GithubUser({
-  avatar_url,
-  name,
-  login,
-  html_url,
-  created_at,
-  bio,
-  public_repos,
-  followers,
-  following,
-  location,
-  blog,
-  twitter_username,
-  company,
-}) {
+async function GithubUser({ username }) {
+  const user = await getGithubUser(username);
+
+  if (!user.ok) {
+    return "Something went wrong";
+  }
+
+  const {
+    avatar_url,
+    name,
+    login,
+    html_url,
+    created_at,
+    bio,
+    public_repos,
+    followers,
+    following,
+    location,
+    blog,
+    twitter_username,
+    company,
+  } = user;
+
   return (
     <article className='py-8 px-6 rounded-2xl bg-card shadow-card grid grid-cols-[auto_1fr] gap-y-6 gap-x-5'>
       <div className='relative size-[70px] col-span-1'>

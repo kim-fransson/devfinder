@@ -1,12 +1,16 @@
 import GithubUser from "@/components/GithubUser";
-import { getGithubUser } from "@/helpers";
+import Search from "@/components/Search";
+import { COOKIE_GITHUB_USERNAME, DEFAULT_USER } from "@/constants";
+import { cookies } from "next/headers";
+import React from "react";
 
 export default async function Home() {
-  const res = await getGithubUser("octocat");
-
+  const savedUsername = (await cookies()).get(COOKIE_GITHUB_USERNAME);
+  const username = savedUsername?.value ?? DEFAULT_USER;
   return (
     <main className='grid gap-8'>
-      {res.status !== "404" ? <GithubUser {...res} /> : "No user"}
+      <Search />
+      <GithubUser username={username} />
     </main>
   );
 }

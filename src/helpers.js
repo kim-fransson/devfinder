@@ -1,3 +1,4 @@
+// The primary rate limit for unauthenticated requests is 60 requests per hour.
 export async function getGithubUser(username) {
   const url = `https://api.github.com/users/${username}`;
   try {
@@ -6,7 +7,7 @@ export async function getGithubUser(username) {
       return { ok: false };
     }
     const data = await res.json();
-    return { ...data, ok: data.status !== "404" };
+    return { ...data, ok: !!data.id };
   } catch (error) {
     return { ok: false };
   }

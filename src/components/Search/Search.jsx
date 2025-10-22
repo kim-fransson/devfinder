@@ -18,7 +18,7 @@ export default function SearchForm() {
   return (
     <form
       action={formAction}
-      className='rounded-2xl bg-card flex items-center gap-2 md:gap-5 shadow-card 
+      className='rounded-2xl bg-card flex items-center gap-2 md:gap-5 shadow-card flex-wrap
         py-2.5 pr-3 pl-3 md:pl-6 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-focus'
     >
       <div

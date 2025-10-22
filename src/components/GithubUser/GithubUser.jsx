@@ -128,7 +128,7 @@ async function GithubUser({ username }) {
 
 function StatusCard({ title, children }) {
   return (
-    <div className='rounded-2xl bg-card shadow-card p-12 grid gap-2'>
+    <div className='py-8 px-6 rounded-2xl bg-card shadow-card md:p-12 grid gap-2'>
       <h2 className='text-2xl font-bold text-heading text-center'>
         {title}
       </h2>

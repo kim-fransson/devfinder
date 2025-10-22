@@ -18,34 +18,52 @@
   /* Red */
   --red-500: hsl(0, 92%, 62%);
 
-  /* Shadows */
-  --card-shadow: 0px 16px 30px -10px hsl(227deg 46% 50% / 0.199);
-
-  --card: var(--neutral-0);
   --background: var(--neutral-100);
+  --card: var(--neutral-0);
+  --card-shadow: 0px 16px 30px -10px hsl(227deg 46% 50% / 0.199);
   --foreground: var(--neutral-500);
+  --heading: var(--neutral-700);
+  --image-background: var(--neutral-100);
+  --stats: var(--neutral-700);
+  --stats-background: var(--neutral-100);
+  --stats-icon: var(--neutral-900);
+  --username: var(--blue-500);
+  --logo: var(--neutral-900);
+  --theme-toggle: var(--neutral-500);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
-
+  --color-image-background: var(--image-background);
+  --color-heading: var(--heading);
+  --color-username: var(--username);
+  --color-logo: var(--logo);
+  --color-stats: var(--stats);
+  --color-stats-background: var(--stats-background);
+  --color-stats-icon: var(--stats-icon);
+  --color-theme-toggle: var(--theme-toggle);
   --font-mono: var(--font-space-mono);
-
   --shadow-card: var(--card-shadow);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--neutral-900);
-    --foreground: var(--neutral-0);
-    --card: var(--neutral-800);
-  }
+:root[data-color-theme="dark"] {
+  --background: var(--neutral-900);
+  --card: var(--neutral-800);
+  --card-shadow: none;
+  --foreground: var(--neutral-0);
+  --heading: var(--neutral-0);
+  --image-background: var(--neutral-0);
+  --logo: var(--neutral-0);
+  --stats: var(--neutral-0);
+  --stats-background: var(--neutral-900);
+  --stats-icon: var(--neutral-0);
+  --username: var(--blue-300);
+  --theme-toggle: var(--neutral-200);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

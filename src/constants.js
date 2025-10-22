@@ -23,6 +23,8 @@ export const LIGHT_COLORS = {
   "--button-hover": "var(--blue-300)",
   "--search-icon": "var(--blue-500)",
   "--focus": "var(--blue-500)",
+  "--highlight": "var(--blue-500)",
+  "--error": "var(--red-500)",
 };
 
 export const DARK_COLORS = {
@@ -44,4 +46,6 @@ export const DARK_COLORS = {
   "--button-hover": "var(--blue-300)",
   "--search-icon": "var(--blue-300)",
   "--focus": "var(--blue-500)",
+  "--highlight": "var(--blue-300)",
+  "--error": "var(--red-500)",
 };

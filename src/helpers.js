@@ -4,7 +4,7 @@ export async function getGithubUser(username) {
   try {
     const res = await fetch(url);
     if (!res.ok) {
-      return { ok: false };
+      return { ok: false, status: res.status };
     }
     const data = await res.json();
     return { ...data, ok: !!data.id };

@@ -37,7 +37,9 @@
   --color-button-foreground: var(--button-foreground);
   --color-search-icon: var(--search-icon);
   --color-button-hover: var(--button-hover);
+  --color-highlight: var(--highlight);
   --color-focus: var(--focus);
+  --color-error: var(--error);
   --font-mono: var(--font-space-mono);
   --shadow-card: var(--card-shadow);
 }

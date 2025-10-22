@@ -15,8 +15,24 @@ import { getGithubUser } from "@/helpers";
 async function GithubUser({ username }) {
   const user = await getGithubUser(username);
 
+  if (!user.ok && user.status === 404) {
+    return (
+      <StatusCard title='No results found!'>
+        We couldn’t find any GitHub users matching{" "}
+        <span className='font-bold text-highlight'>{username}</span>.
+        Please double-check the username and try again.
+      </StatusCard>
+    );
+  }
+
   if (!user.ok) {
-    return "Something went wrong";
+    return (
+      <StatusCard title='Something went wrong!'>
+        Something went wrong on our end. Our servers might be taking a
+        coffee <span aria-hidden='true'>☕</span> break—or maybe we
+        hit our rate limit for good vibes. Try again in a bit!
+      </StatusCard>
+    );
   }
 
   const {
@@ -51,6 +67,7 @@ async function GithubUser({ username }) {
       <header className='md:flex md:content-baseline'>
         <hgroup>
           <h2 className='text-2xl font-bold text-heading'>{name}</h2>
+          <span className='sr-only'>{name} github page</span>
           <a
             href={html_url}
             target='_blank'
@@ -78,19 +95,26 @@ async function GithubUser({ username }) {
           <Link
             icon={LocationIcon}
             href={createGoogleMapsLink(location)}
+            label='Google map link'
           >
             {location}
           </Link>
           <Link
             icon={TwitterIcon}
             href={createTwitterLink(twitter_username)}
+            label='twitter link'
           >
             {twitter_username}
           </Link>
-          <Link icon={WebsiteIcon} href={blog}>
+          <Link
+            label={`${name} blog website`}
+            icon={WebsiteIcon}
+            href={blog}
+          >
             {blog}
           </Link>
           <Link
+            label='Company google search'
             icon={CompanyIcon}
             href={createGoogleSearchLink([company, location])}
           >
@@ -99,6 +123,17 @@ async function GithubUser({ username }) {
         </ul>
       </div>
     </article>
+  );
+}
+
+function StatusCard({ title, children }) {
+  return (
+    <div className='rounded-2xl bg-card shadow-card p-12 grid gap-2'>
+      <h2 className='text-2xl font-bold text-heading text-center'>
+        {title}
+      </h2>
+      <div className='text-center'>{children}</div>
+    </div>
   );
 }
 
@@ -111,7 +146,7 @@ function Stat({ label, value }) {
   );
 }
 
-function Link({ href, children, icon: Icon }) {
+function Link({ href, label, children, icon: Icon }) {
   const isNotAvailable = !children;
 
   const Template = !isNotAvailable ? (
@@ -131,7 +166,8 @@ function Link({ href, children, icon: Icon }) {
       style={{ opacity: isNotAvailable && "0.70" }}
       className='flex gap-[18px] items-center'
     >
-      <span className='text-stats-icon'>
+      <span className='sr-only'>{label}</span>
+      <span aria-hidden='true' className='text-stats-icon'>
         <Icon />
       </span>
       {Template}

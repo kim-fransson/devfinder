@@ -5,13 +5,17 @@ import { getGithubUser } from "@/helpers";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
-export async function searchUser(formData) {
-  const username = formData.get("username");
+export async function searchUser(_prevState, queryData) {
+  const username = queryData.get("username");
 
   const user = await getGithubUser(username);
+  let error = "";
 
   if (!user.ok) {
-    // throw to surface failure to the client
+    error = "Server error";
+  }
+  if (!user.ok && user.status === 404) {
+    error = "No results";
   }
 
   // Set server-side cookie
@@ -21,4 +25,5 @@ export async function searchUser(formData) {
 
   // Revalidate the root path so the server will re-render with the new cookie value
   revalidatePath("/");
+  return { error };
 }

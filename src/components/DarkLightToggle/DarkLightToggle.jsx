@@ -41,9 +41,23 @@ function DarkLightToggle({ initialTheme }) {
       focus-visible:ring-offset-2 focus-visible:ring-offset-background'
       onClick={handleClick}
     >
-      {theme === "light" ? "DARK" : "LIGHT"}
+      {theme === "light" ? (
+        <>
+          <span aria-hidden='true'>DARK</span>{" "}
+          <span className='sr-only'>Toggle dark theme</span>
+        </>
+      ) : (
+        <>
+          <span aria-hidden='true'>LIGHT</span>{" "}
+          <span className='sr-only'>Toggle light theme</span>
+        </>
+      )}
 
-      {theme === "light" ? <MoonIcon /> : <SunIcon />}
+      {theme === "light" ? (
+        <MoonIcon aria-hidden='true' />
+      ) : (
+        <SunIcon aria-hidden='true' />
+      )}
     </button>
   );
 }

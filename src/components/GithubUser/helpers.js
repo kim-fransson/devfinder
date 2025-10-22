@@ -1,6 +1,9 @@
 import { format } from "date-fns";
 
 export function createGoogleMapsLink(location) {
+  if (!location) {
+    return "";
+  }
   const searchQuery = location.replace(" ", "+");
   return `https://www.google.com/maps/place/${searchQuery}`;
 }
@@ -10,6 +13,9 @@ export function createTwitterLink(username) {
 }
 
 export function createGoogleSearchLink(terms) {
+  if (terms.length === 0) {
+    return "";
+  }
   const searchQuery = terms.join(" ").replace(" ", "+");
   return `https://www.google.com/search?q=${searchQuery}`;
 }

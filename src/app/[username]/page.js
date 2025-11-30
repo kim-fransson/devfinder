@@ -1,38 +1,43 @@
 import Image from "next/image";
-import React from "react";
+import { notFound } from "next/navigation";
+
 import {
   createGoogleMapsLink,
   createGoogleSearchLink,
   createTwitterLink,
   formatCreatedAt,
+  getGithubUser,
 } from "./helpers";
-import CompanyIcon from "../CompanyIcon";
-import LocationIcon from "../LocationIcon";
-import TwitterIcon from "../TwitterIcon";
-import WebsiteIcon from "../WebsiteIcon";
-import { getGithubUser } from "@/helpers";
 
-async function GithubUser({ username }) {
+import LocationIcon from "@/components/LocationIcon";
+import TwitterIcon from "@/components/TwitterIcon";
+import WebsiteIcon from "@/components/WebsiteIcon";
+import CompanyIcon from "@/components/CompanyIcon";
+
+export async function generateMetadata({ params }) {
+  const { username } = await params;
+
   const user = await getGithubUser(username);
 
-  if (!user.ok && user.status === 404) {
-    return (
-      <StatusCard title='No results found!'>
-        We couldn’t find any GitHub users matching{" "}
-        <span className='font-bold text-highlight'>{username}</span>.
-        Please double-check the username and try again.
-      </StatusCard>
-    );
+  if (!user) {
+    notFound();
   }
 
-  if (!user.ok) {
-    return (
-      <StatusCard title='Something went wrong!'>
-        Something went wrong on our end. Our servers might be taking a
-        coffee <span aria-hidden='true'>☕</span> break—or maybe we
-        hit our rate limit for good vibes. Try again in a bit!
-      </StatusCard>
-    );
+  return {
+    title: `Devfinder | ${username}`,
+    icons: {
+      icon: user.avatar_url,
+    },
+  };
+}
+
+export default async function UserPage({ params }) {
+  const { username } = await params;
+
+  const user = await getGithubUser(username);
+
+  if (!user) {
+    notFound();
   }
 
   const {
@@ -126,17 +131,6 @@ async function GithubUser({ username }) {
   );
 }
 
-function StatusCard({ title, children }) {
-  return (
-    <div className='py-8 px-6 rounded-2xl bg-card shadow-card md:p-12 grid gap-2'>
-      <h2 className='text-2xl font-bold text-heading text-center'>
-        {title}
-      </h2>
-      <div className='text-center'>{children}</div>
-    </div>
-  );
-}
-
 function Stat({ label, value }) {
   return (
     <li className='grid gap-1'>
@@ -174,5 +168,3 @@ function Link({ href, label, children, icon: Icon }) {
     </li>
   );
 }
-
-export default GithubUser;

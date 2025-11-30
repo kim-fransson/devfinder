@@ -9,6 +9,7 @@ import { cookies } from "next/headers";
 
 import "./globals.css";
 import DarkLightToggle from "@/components/DarkLightToggle";
+import SearchForm from "@/components/Search";
 
 const spaceMono = Space_Mono({
   variable: "--font-space-mono",
@@ -40,6 +41,7 @@ export default async function RootLayout({ children }) {
             </h1>
             <DarkLightToggle initialTheme={theme} />
           </header>
+          <SearchForm />
           {children}
         </div>
       </body>

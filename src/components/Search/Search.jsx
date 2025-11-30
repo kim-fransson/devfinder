@@ -1,12 +1,23 @@
+"use client";
+
 import React from "react";
-import Form from "next/form";
 import SearchIcon from "../SearchIcon";
-import { search } from "./actions";
+import { useRouter } from "next/navigation";
 
 export default function SearchForm() {
+  const router = useRouter();
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const username = formData.get("username");
+    if (username) {
+      router.push(`/${username}`);
+    }
+  }
+
   return (
-    <Form
-      action={search}
+    <form
+      onSubmit={handleSubmit}
       className='rounded-2xl bg-card flex items-center gap-2 md:gap-5 shadow-card flex-wrap
         py-2.5 pr-3 pl-3 md:pl-6 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-focus'
     >
@@ -32,6 +43,6 @@ export default function SearchForm() {
       >
         Search
       </button>
-    </Form>
+    </form>
   );
 }

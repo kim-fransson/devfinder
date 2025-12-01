@@ -41,6 +41,7 @@
   --color-focus: var(--focus);
   --color-error: var(--error);
   --font-mono: var(--font-space-mono);
+  --font-loading: var(--loading-font);
   --shadow-card: var(--card-shadow);
 }
 
